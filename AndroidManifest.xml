@@ -25,7 +25,8 @@
         </activity>
         <activity
             android:name="cpnv.jav1.lima.DebugActivity"
-            android:label="@string/debTitle" >
+            android:label="@string/debTitle" 
+        	android:screenOrientation="portrait" >
         </activity>
     
     </application>

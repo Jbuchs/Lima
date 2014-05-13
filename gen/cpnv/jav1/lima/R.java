@@ -44,7 +44,7 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f050001;
         public static final int debTitle=0x7f050003;
-        public static final int empty=0x7f050010;
+        public static final int empty=0x7f050015;
         public static final int hello=0x7f050000;
         public static final int uitDebugAction1=0x7f05000d;
         public static final int uitDebugAction2=0x7f05000e;
@@ -53,6 +53,11 @@ public final class R {
         public static final int uitMainDistribution=0x7f050006;
         public static final int uitMainInventory=0x7f050005;
         public static final int uitMainValidation=0x7f050004;
+        public static final int uitTemplateAction1=0x7f050010;
+        public static final int uitTemplateAction2=0x7f050011;
+        public static final int uitTemplateAction3=0x7f050012;
+        public static final int uitTemplateNav1=0x7f050013;
+        public static final int uitTemplateNav2=0x7f050014;
         public static final int uitValNewYear=0x7f05000c;
         public static final int uitValYear2014=0x7f05000b;
         public static final int uitValmenuBook=0x7f05000a;

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -68,23 +69,22 @@ public class DebugActivity extends Activity
 		switch (btn.getId()) 
 		{
 		case R.id.action1: // 
-			LimaDb myDb = new LimaDb("http://192.168.0.10");
+			LimaDb myDb = new LimaDb("http://192.168.0.4");
+			Log.i ("LIMA","Test Db connection");
 			if (!myDb.connectionIsOK())
 			{
 				Toast.makeText(getApplicationContext(), "Echec de la connexion à la base de données",Toast.LENGTH_LONG).show();
 				return;
 			}
+			Log.i ("LIMA","Db connection OK");
 
-			int n = myDb.executeQuery("INSERT INTO person (personfirstname,personlastname) VALUES ('James','BLUNT')");
-			n = myDb.executeQuery("UPDATE person SET personlastname='BLOUNT' WHERE personlastname='BLUNT'");
-			n = myDb.executeQuery("DELETE FROM person WHERE personlastname='BLOUNT'");
-			n = myDb.executeQuery("SELECT * FROM person");
+			int n = myDb.executeQuery("SELECT * FROM article");
 			if(n > 0)
 			{
 				_output.setText("Sélectionné "+n+" enregistrement(s)\n");
 				while (myDb.moveNext())
 				{
-					append ("Nom:"+myDb.getField("personlastname"));
+					append ("Nom:"+myDb.getField("articlename"));
 				}
 			}
 			
@@ -95,6 +95,15 @@ public class DebugActivity extends Activity
 			append(now.toString());
 			break;
 		case R.id.action3: // 
+			append("click3");
+			try {
+				Student toto = new Student("Toto","xs", 2012);
+				toto.setBirthDate(new Date(2000,4,25));
+				append("Dump toto: "+toto.dump());
+			} catch (Exception e) {
+				append("Exception: "+e.getMessage());
+				Log.i ("LIMA","Exception: "+e.getMessage());
+			}
 			break;
 		}
 	}
