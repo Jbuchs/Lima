@@ -5,6 +5,7 @@
     <string name="app_name">Lima</string>
     <string name="valTitle">Lima - Validation</string>
     <string name="debTitle">Lima - Debug</string>
+    <string name="invTitle">Lima - Inventory</string>
     <string name="uitMainValidation">Validation</string>
     <string name="uitMainInventory">Inventaire</string>
     <string name="uitMainDistribution">Distribution</string>

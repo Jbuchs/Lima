@@ -17,6 +17,13 @@ public class Teacher extends Person
 			throw new Exception("Invalid domain");
 	}
 
+	/**
+	 * 
+	 * @param firstname
+	 * @param lastname
+	 * @param domain
+	 * @throws Exception
+	 */
 	public Teacher(String firstname, String lastname, String domain) throws Exception {
 		super(firstname, lastname);
 		if (domain.length() > 2)

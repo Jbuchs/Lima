@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -90,10 +91,15 @@ public class DebugActivity extends Activity
 			
 			break;
 		case R.id.action2: // 
-			Time now = new Time();
-			now.setToNow();
-			append(now.toString());
-			break;
+			Teacher Jack = null;
+			try {
+				Jack = new Teacher("Jack", "Sparrow", "Piraterie");
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			append(getClassDetails(Jack));
+		    break;
 		case R.id.action3: // 
 			append("click3");
 			try {
@@ -106,6 +112,27 @@ public class DebugActivity extends Activity
 			}
 			break;
 		}
+	}
+	
+	private String getClassDetails(Object o)
+	{
+        return o.getClass().getName()+"\n"+getAllFields(o.getClass());
+	}
+	
+	private String getAllFields(Class C)
+	{
+		String res = null;
+		Class sc = C.getSuperclass();
+		if (sc != null) res = getAllFields(sc);
+        for (Field field : C.getDeclaredFields())
+        {
+        	String sf = field.getName()+" ("+field.getType().getSimpleName()+")";
+        	if (res == null)
+        		res = sf;
+        	else
+        		res += "\n"+sf;
+        }
+        return res;
 	}
 	
 	// Append a new line at the end of the display

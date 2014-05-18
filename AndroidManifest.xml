@@ -28,7 +28,11 @@
             android:label="@string/debTitle" 
         	android:screenOrientation="portrait" >
         </activity>
-    
+        <activity
+            android:name="cpnv.jav1.lima.InventoryActivity"
+            android:label="@string/invTitle" >
+        </activity>
+        
     </application>
     
 </manifest>

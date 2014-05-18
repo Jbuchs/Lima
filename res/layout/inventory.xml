@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btnAddRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add row" />
+
+    <TableLayout
+        android:id="@+id/tableLayoutInventory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:shrinkColumns="*"
+        android:stretchColumns="*" >
+            <TableRow
+            android:id="@+id/tableRowTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/headerCol1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ID"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/headerCol2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Titre"
+                    android:textSize="16dp" />
+
+            </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
