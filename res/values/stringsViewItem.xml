@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="itemTitle">Lima - Debug</string>
+    <string name="uitMainViewItem">View Item</string>
+    <string name="uitViewItemAction1">Action 1</string>
+    <string name="uitViewItemAction2">Action 2</string>
+    <string name="uitViewItemAction3">Action 3</string>
+    
+</resources>
