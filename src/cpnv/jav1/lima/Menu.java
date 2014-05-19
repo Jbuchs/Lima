@@ -56,6 +56,10 @@ public class Menu extends Activity
 		case R.id.cmdMainInventory: // Inventory button -> switch to Inventory activity
 			break;
 		case R.id.cmdMainDistribution: // Distribution button -> switch to Distribution activity
+			Intent distribution = new Intent(Menu.this, cpnv.jav1.lima.DistributionSessionsActivity.class);
+			distribution.putExtra("arg0", "arg0 is a string value, unlike arg1, which is an integer");
+			distribution.putExtra("arg1", 5);
+			Menu.this.startActivity(distribution);
 			break;
 		}
 	}

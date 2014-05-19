@@ -9,7 +9,6 @@
 package cpnv.jav1.lima;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import android.util.Log;
 
@@ -86,6 +85,7 @@ public class Book extends Article
      * The name for the SQL field for the foreign key
      */
     public static final String sqlArticleId = "fk_article";
+    
 
 /* +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ */
   /* Constructor */
@@ -161,6 +161,7 @@ public class Book extends Article
     	return new LimaDb("http://192.168.0.4");
     }
     
+    
     /**
      * Save the current object on the database
      */
@@ -169,10 +170,12 @@ public class Book extends Article
     	LimaDb dao = Book.getDao();
     	
     	if (null == _id) {
-    		
-    	} else {
-    		
-    	}
+        	String queryArticle = "INSERT INTO " + super.sqlTable + " () ";
+        	String queryBook = "INSERT INTO " + sqlTable + " () ";
+        } else {
+        	String queryArticle = "UPDATE " + super.sqlTable + " ()";
+        	String queryBook = "UPDATE " + sqlTable + " () ";
+        }
     }
     
     /**

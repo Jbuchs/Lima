@@ -25,12 +25,17 @@
             android:label="@string/debTitle"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name="cpnv.jav1.lima.DebugActivityEFY"
-            android:label="@string/debTitle"
-            android:screenOrientation="portrait" >
-        </activity>
-    
+    	
+    	<activity
+    	    android:name="cpnv.jav1.lima.DistributionSessionsActivity"
+    	    android:label="@string/distribTitle"
+    	    android:screenOrientation="portrait">
+    	</activity>
+    	<activity
+    	    android:name="cpnv.jav1.lima.DistributionSessionsClassActivity"
+    	    android:label="@string/distrisessclasstitle"
+    	    android:screenOrientation="portrait">
+    	</activity>
     </application>
     
 </manifest>
