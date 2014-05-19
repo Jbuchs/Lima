@@ -3,10 +3,13 @@
  *
  * @package cpnv.jav1.lima
  * @author romain.lanz
- * @version 1.0, 12.05.14
+ * @version 1.0, 19.05.14
  */
 
 package cpnv.jav1.lima;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.util.Log;
 
@@ -140,7 +143,6 @@ public class Book extends Article
     	dump += "\n\t Editor = " + _editor;
     	dump += "\n\t ISBN = " + _isbn;
     	dump += "\n\t PublicationYear = " + _publicationYear;
-    	dump += "\n\t ArticleId = " + _articleId;
     	dump += "\n}";
     	
         return dump;
@@ -174,6 +176,22 @@ public class Book extends Article
     }
     
     /**
+     * Gets all book
+     * 
+     * @return ArrayList of book
+     */
+    public static ArrayList<Book> findAll()
+    {
+    	String query = "SELECT * FROM " + sqlTable + " b, " + Article.sqlTable + " a WHERE a." + Article.sqlId + " = b." + sqlArticleId;
+    	Log.i("LIMA", "New query : " + query);
+    	LimaDb dao = Book.getDao();
+    	
+    	dao.executeQuery(query);
+    	
+    	return Book.instanceWithDao(dao);
+    }
+    
+    /**
      * Gets a book with an ID
      * 
      * @param id ID of the book
@@ -187,7 +205,7 @@ public class Book extends Article
     	
     	dao.executeQuery(query);
     	
-    	return Book.instanceWithDao(dao);
+    	return Book.instanceOneWithDao(dao);
     }
     
     /**
@@ -204,7 +222,7 @@ public class Book extends Article
     	
     	dao.executeQuery(query);
     	
-    	return Book.instanceWithDao(dao);
+    	return Book.instanceOneWithDao(dao);
     }
     
     /**
@@ -213,7 +231,7 @@ public class Book extends Article
      * @param dao Database access object
      * @return A Book
      */
-    private static Book instanceWithDao(LimaDb dao)
+    private static Book instanceOneWithDao(LimaDb dao)
     {
     	try {
     		while(dao.moveNext()) {
@@ -237,6 +255,40 @@ public class Book extends Article
     	}
     	
     	return new Book();
+    }
+    
+    /**
+     * Instance books with a database access object
+     * 
+     * @param dao Database access object
+     * @return Books
+     */
+    private static ArrayList<Book> instanceWithDao(LimaDb dao)
+    {
+    	ArrayList<Book> books = new ArrayList<Book>();
+    	
+    	try {
+    		while(dao.moveNext()) {
+        		 books.add(new Book(
+        				(null == dao.getField(dao.getField(sqlID)) ? null : Integer.parseInt(dao.getField(sqlID))),
+        				dao.getField(sqlAuthor),
+        				dao.getField(sqlEditor),
+        				dao.getField(sqlIsbn),
+        				(null == dao.getField(sqlPublicationYear) ? null : Integer.parseInt(dao.getField(sqlPublicationYear))),
+        				(null == dao.getField(sqlArticleId) ? null : Integer.parseInt(dao.getField(sqlArticleId))),
+        				dao.getField(Article.sqlName),
+        				dao.getField(Article.sqlNumber),
+        				dao.getField(Article.sqlSupplier),
+        				(null == dao.getField(sqlPrice) ? null : Float.parseFloat(dao.getField(sqlPrice))),
+        				(null == dao.getField(sqlTVA) ? null : Float.parseFloat(dao.getField(sqlTVA))),
+        				(null == dao.getField(sqlStock) ? null : Integer.parseInt(dao.getField(sqlStock)))
+        		));
+        	}
+    	} catch (Exception e) {
+    		Log.i("LIMA", "Can't instance Book object. Error is \"" + e.getMessage() + "\"");
+    	}
+    	
+    	return books;
     }
     
 /* +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ */
