@@ -48,11 +48,13 @@ public class DebugActivityEFY extends Activity
 		switch (btn.getId()) 
 		{
 		case R.id.actionEFY: // Add timestamp to the debug text
+			out = "";
 			LimaDb db = new LimaDb("http://192.168.0.4");
-			db.executeQuery("SELECT * FROM person LIMIT 10");
+			db.executeQuery("SELECT * FROM person");
 			
 			while (db.moveNext()){
 				out += db.getField("personfirstname")+ "\n";
+				Log.i ("LIMA", db.getField("personfirstname"));
 			}
 			
 			_output.setText(out);
