@@ -10,28 +10,36 @@ public class Student extends Person {
 		return _startYear;
 	}
 
-	public void setStartYear(int startYear) throws Exception {
+	public void setStartYear(int startYear) throws LimaException {
 		if (startYear > 2000)
 			_startYear = startYear;
 		else
-			throw new Exception("Invalid start Year");
+			throw new LimaException("Invalid start Year");
 	}
 
-	public Student(String firstname, String lastname, int startYear) throws Exception {
+	/**
+	 * Constructor
+	 * @param firstname
+	 * @param lastname
+	 * @param startYear
+	 * @throws LimaException
+	 */
+	public Student(String firstname, String lastname, Date bdate, int startYear) throws LimaException {
 		super(firstname, lastname);
+		setBirthDate(bdate);
 		if (startYear > 2000)
 			_startYear = startYear;
 		else
-			throw new Exception("Invalid start Year");
+			throw new LimaException("Invalid start Year");
 	}
 
 	@Override
-	public void setBirthDate(Date birthDate) throws Exception 
+	public void setBirthDate(Date birthDate) throws LimaException 
 	{
-		if ((new Date()).getYear() - birthDate.getYear() >= 15)
+		if (getYearsSince(birthDate) >= 15)
 			_birthDate = birthDate;
 		else
-			throw new Exception("Too young to be a student");
+			throw new LimaException("Too young to be a student");
 	}
 
 	@Override

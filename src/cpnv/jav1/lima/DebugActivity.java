@@ -93,20 +93,18 @@ public class DebugActivity extends Activity
 		case R.id.action2: // 
 			Teacher Jack = null;
 			try {
-				Jack = new Teacher("Jack", "Sparrow", "Piraterie");
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				Jack = new Teacher("Jack", "Sparrow", new Date(1916,4,25), "Piraterie");
+				append(Jack.dump());
+			} catch (LimaException e1) {
+				Log.i ("LIMA","Exception: "+e1.getMessage());
 			}
-			append(getClassDetails(Jack));
 		    break;
 		case R.id.action3: // 
 			append("click3");
 			try {
-				Student toto = new Student("Toto","xs", 2012);
-				toto.setBirthDate(new Date(2000,4,25));
+				Student toto = new Student("Toto","xs", new Date(1994,8,12), 2012);
 				append("Dump toto: "+toto.dump());
-			} catch (Exception e) {
+			} catch (LimaException e) {
 				append("Exception: "+e.getMessage());
 				Log.i ("LIMA","Exception: "+e.getMessage());
 			}
@@ -135,7 +133,11 @@ public class DebugActivity extends Activity
         return res;
 	}
 	
-	// Append a new line at the end of the display
+	/** Append a new line at the end of the display
+	 * 
+	 * @param l
+	 * Message to display
+	 */
 	private void append(String l)
 	{
 		_output.setText(_output.getText()+"\n"+l);

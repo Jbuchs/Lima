@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="uitMainDebug">Debug</string>
+    <string name="uitDebugAction1">Action 1</string>
+    <string name="uitDebugAction2">Action 2</string>
+    <string name="uitDebugAction3">Action 3</string>
+    
+</resources>

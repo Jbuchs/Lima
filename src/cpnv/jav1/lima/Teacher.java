@@ -1,44 +1,46 @@
 package cpnv.jav1.lima;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Teacher extends Person 
 {
-	private String _domain;
+	protected String _domain;
 	
-	public String getStartYear() {
+	public String getDomain() {
 		return _domain;
 	}
 
-	public void setStartYear(String domain) throws Exception {
+	public void setDomain(String domain) throws LimaException {
 		if (domain.length() > 2)
 			_domain = domain;
 		else
-			throw new Exception("Invalid domain");
+			throw new LimaException("Invalid domain");
 	}
 
 	/**
-	 * 
+	 * Main constructor
 	 * @param firstname
 	 * @param lastname
 	 * @param domain
 	 * @throws Exception
 	 */
-	public Teacher(String firstname, String lastname, String domain) throws Exception {
+	public Teacher(String firstname, String lastname, Date bdate, String domain) throws LimaException {
 		super(firstname, lastname);
+		setBirthDate(bdate);
 		if (domain.length() > 2)
 			_domain = domain;
 		else
-			throw new Exception("Invalid domain");
+			throw new LimaException("Invalid domain");
 	}
 
 	@Override
-	public void setBirthDate(Date birthDate) throws Exception 
+	public final void setBirthDate(Date birthDate) throws LimaException 
 	{
-		if ((new Date()).getYear() - birthDate.getYear() >= 25)
+		if (getYearsSince(birthDate) >= 25)
 			_birthDate = birthDate;
 		else
-			throw new Exception("Too young to be a teacher");
+			throw new LimaException("Too young to be a teacher");
 	}
 
 	@Override

@@ -21,27 +21,27 @@ public abstract class Person {
 	 * @throws Exception
 	 * If the firstname or the lastname is less than 2 characters long
 	 */
-	public Person(String firstname, String lastname) throws Exception
+	public Person(String firstname, String lastname) throws LimaException
 	{
 		if (firstname.length() > 1)
 			_firstname = firstname;
 		else
-			throw new Exception("Firstname too short");		
+			throw new LimaException("Firstname too short");		
 		if (lastname.length() > 1)
 			_lastname = lastname;
 		else
-			throw new Exception("lastname too short");		
+			throw new LimaException("lastname too short");		
 	}
 	
 	//
 	public String getFirstname() {
 		return _firstname;
 	}
-	public void setFirstname(String firstname) throws Exception {
+	public void setFirstname(String firstname) throws LimaException {
 		if (firstname.length() > 1)
 			_firstname = firstname;
 		else
-			throw new Exception("Nom trop court");
+			throw new LimaException("Nom trop court");
 	}
 	public String getLastname() {
 		return _lastname;
@@ -54,18 +54,17 @@ public abstract class Person {
 	}
 	
 	// setBirthdate is pure virtual
-	public abstract void setBirthDate(Date birthDate) throws Exception;
+	public abstract void setBirthDate(Date birthDate) throws LimaException;
 	
 	public String dump()
 	{
 		return _firstname.substring(0,1).toUpperCase()+_firstname.substring(1).toLowerCase()+" "+_lastname.toUpperCase();
 	}
 	
-	protected int getYearsBetween(Date date1,Date date2)
+	protected int getYearsSince(Date date)
 	{ 
 		SimpleDateFormat simpleDateformat=new SimpleDateFormat("yyyy");
-		Integer.parseInt(simpleDateformat.format(date1));
-		return Integer.parseInt(simpleDateformat.format(date2))- Integer.parseInt(simpleDateformat.format(date1));
+		return Integer.parseInt(simpleDateformat.format(date))- Integer.parseInt(simpleDateformat.format(new Date()));
 	}
 	
 }
