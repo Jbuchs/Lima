@@ -25,6 +25,8 @@ public class Article {
 	public static final String sqlTable = "article";
 	public static final String dao = "http://192.168.0.4/";
 
+	public Article() {}
+	
 	public Article(int id) {
 		_id = id;
 		LimaDb dao = new LimaDb(this.dao);
