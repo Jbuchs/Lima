@@ -9,11 +9,12 @@ public class Article {
 	// Date: May 2014
 	
 	private String _name;
-	private int _number; // CPNV Article number
-	private String _resp; // Person in charge of this article
+	private String _number; // CPNV Article number
 	private String _supplier;
 	private double _price;
 	private double _VAT; // = swiss "TVA"
+	private int _stock;
+	private boolean _obsolete;
 	
 	// ================================== Constructors ==========================================
 	
@@ -21,30 +22,31 @@ public class Article {
 	// Default constructor
 	{
 		_name = "(à définir)";
-		_number = 0;
-		_resp = "(à définir)";
+		_number = "0";
 		_supplier = "(à définir)";
 		_price = 0.0;
 		_VAT = 0.0;
+		_stock = 0;
+		_obsolete = false;
 	}
 	
-	public Article (String name, int number, String resp, String supplier, double price, double VAT)
-	// Main constructor
+	/**
+	 * 
+	 * @param name
+	 * @param number
+	 * @param resp
+	 * @param supplier
+	 * @param price
+	 * @param VAT
+	 */
+	public Article (String name, String number, String supplier, double price, double VAT, int stock, boolean obsolete)
 	{
 		if (name.length() < 3) // All names must be at least 3 characters long
 			_name = "(à définir)";
 		else
 			_name = name;
 		
-		if (number < 0)
-			_number = 0;
-		else
-			_number = number;
-		
-		if (resp.length() < 3) // All names must be at least 3 characters long
-			_resp = "(à définir)";
-		else
-			_resp = resp;
+		_number = number;
 		
 		if (supplier.length() < 3) // All names must be at least 3 characters long
 			_supplier = "(à définir)";
@@ -60,17 +62,21 @@ public class Article {
 			_VAT = 0;
 		else
 			_VAT = VAT;
+		
+		_stock = stock;
+		_obsolete = obsolete;
 	}
 	
 	// Duplication constructor
 	public Article (Article original)
 	{
 		_name = original.getName();
-		_number = original.getNumber()+1; // Pick the next number
-		_resp = original.getResp();
+		_number = "tbd";
 		_supplier = original.getSupplier();
 		_price = original.getPrice();
 		_VAT = original.getVAT();
+		_stock = 0;
+		_obsolete = original.isObsolete();
 	}
 	
 	// ================================== Getter / Setter ==========================================
@@ -86,32 +92,11 @@ public class Article {
 			_name = name;
 	}
 
-	public int getNumber()
+	public String getNumber()
 	{
 		return _number;
 	}
 
-	public void setNumber(int number)
-	{
-		if (number < 0) // All numbers must be positive
-			_number = 0;
-		else
-			_number = number;
-	}
-
-	public String getResp()
-	{
-		return _resp;
-	}
-
-	public void setResp(String resp)
-	{
-		if (resp.length() < 3) // All names must be at least 3 characters long
-			_resp = "(à définir)";
-		else
-			_resp = resp;
-	}
-	
 	public String getSupplier() {
 		return _supplier;
 	}
@@ -144,12 +129,33 @@ public class Article {
 		else
 			_VAT = VAT;
 	}
+	
+	public int getStock() {
+		return _stock;
+	}
+
+	public void setStock(int stock) {
+		_stock = stock;
+	}
+
+	public boolean isObsolete() {
+		return _obsolete;
+	}
+
+	public void setObsolete(boolean obsolete) {
+		_obsolete = obsolete;
+	}
+
+	public void setNumber(String number) {
+		_number = number;
+	}
+
 
 	// ================================== Other public methods ==========================================
 	
 	public String dump()
 	// Dumps content according to requested format
 	{
-		return _name+"-"+_number+"-"+_resp+"-"+_supplier+"-"+_price+"-"+_VAT;
+		return _name+"-"+_number+"-"+_supplier+"-"+_price+"-"+_VAT;
 	}
 }

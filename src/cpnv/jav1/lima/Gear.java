@@ -16,8 +16,8 @@ public class Gear extends Article {
 		_size = "U"; // Default value "Unique"
 	}
 	
-	public Gear(String name, int number, String resp, String supplier, double price, double VAT, String size) {
-		super (name, number, resp, supplier, price, VAT);
+	public Gear(String name, String number, String supplier, double price, double VAT, int stock, boolean obsolete, String size) {
+		super (name, number, supplier, price, VAT, stock, obsolete);
 		if ((size.length() > 3) || (size.length() < 1)) // Invalid size code
 			_size = "U"; // Default value "Unique"
 		else

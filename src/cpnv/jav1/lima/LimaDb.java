@@ -3,7 +3,10 @@ package cpnv.jav1.lima;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -12,17 +15,21 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * Allows access to the Lima database through a web service
+ * 
+ * @author Xavier
+ * @date May 2014
+ * 
+ */
 public class LimaDb {
-// Class that allows access to the Lima database through a web service
-// Author: X. Carrel
-// Date: May 2014
 	
 	final String LIMA_ERROR_FIELD_DOES_NOT_EXIST = ">>>Lima error: that field does not exist<<<";
 	
 	public enum queryType { SELECT, INSERT, UPDATE, DELETE }
 	
 	private String _wsURL; // Address of the webservice
-	private String _selection; // Data retrieved from a select query (XML format)
+	private String _response; // from the Web Service (XML format)
 	
 	// for XML parsing of the response to a select
 	XmlPullParserFactory _xmlFactoryObject;
@@ -40,6 +47,29 @@ public class LimaDb {
 	
 	// ================================== Public methods ==========================================
 
+	@SuppressWarnings("unchecked")
+	public <Item> List<Item> limaSelect (String sql, Class otype)
+	{
+		executeQuery(sql);
+		List<Item> res = new ArrayList<Item>();
+		
+		if (otype == Article.class)
+		{
+			while (moveNext())
+			{
+				Article newart = new Article(getField("articlename"),
+											 getField("articlenumber"), 
+											 getField("supplier"), 
+											 Double.parseDouble(getField("price")), 
+											 Double.parseDouble(getField("TVA")), 
+											 Integer.parseInt(getField("stock")), 
+											 Boolean.parseBoolean(getField("obsolete")));
+				res.add((Item)newart);
+			}
+		}
+		return res;
+	}
+	
 	// Returns true if the connection with the service is established
 	public boolean connectionIsOK () 
 	{
@@ -61,7 +91,7 @@ public class LimaDb {
 	{
 		HashMap<String, String> postData = new HashMap<String, String>();// The data of the POST request
 		postData.put("sql", query); // $_POST['sql']=query
-		_selection = httpPost(postData,"execquery.php");
+		_response = httpPost(postData,"execquery.php");
 
 		// Initialise the XML parser
 		_xmlFactoryObject = null;
@@ -71,7 +101,7 @@ public class LimaDb {
 		{
 			_xmlFactoryObject = XmlPullParserFactory.newInstance();
 			_myparser = _xmlFactoryObject.newPullParser();
-			_myparser.setInput(new ByteArrayInputStream(_selection.getBytes("UTF-8")), null); // Use input string as a stream for XML input
+			_myparser.setInput(new ByteArrayInputStream(_response.getBytes("UTF-8")), null); // Use input string as a stream for XML input
 		} 
 		catch (XmlPullParserException e) 
 		{

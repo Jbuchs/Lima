@@ -9,6 +9,8 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -70,25 +72,20 @@ public class DebugActivity extends Activity
 		switch (btn.getId()) 
 		{
 		case R.id.action1: // 
-			LimaDb myDb = new LimaDb("http://192.168.0.4");
+			LimaDb myDb = new LimaDb("http://192.168.0.10");
 			Log.i ("LIMA","Test Db connection");
-			if (!myDb.connectionIsOK())
+			if (myDb.connectionIsOK())
+				Log.i ("LIMA","Success");
+			else
+				Log.i ("LIMA","Failure");
+			List<Article> articles = myDb.limaSelect("Select * from article",Article.class);
+			append("List<Article>:");
+			Iterator<Article> i = articles.iterator();
+			while(i.hasNext())
 			{
-				Toast.makeText(getApplicationContext(), "Echec de la connexion à la base de données",Toast.LENGTH_LONG).show();
-				return;
+				Article a = (Article) i.next();
+				append("Article: "+a.getName()+", no "+a.getNumber());
 			}
-			Log.i ("LIMA","Db connection OK");
-
-			int n = myDb.executeQuery("SELECT * FROM article");
-			if(n > 0)
-			{
-				_output.setText("Sélectionné "+n+" enregistrement(s)\n");
-				while (myDb.moveNext())
-				{
-					append ("Nom:"+myDb.getField("articlename"));
-				}
-			}
-			
 			break;
 		case R.id.action2: // 
 			Teacher Jack = null;
