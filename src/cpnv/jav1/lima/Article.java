@@ -41,10 +41,7 @@ public class Article {
 	}
 	
 	public String dump() {
-		return "id : " + _id + "\n name : " + _name + "\n number : " + _number
-				+ "\n supplier : " + _supplier + "\n price : " + _price
-				+ "\n TVA : " + _TVA + "\n stock : " + _stock
-				+ "\n obsolete : " + _obsolete;
+		return "name : " + _name + ", number : " + _number + ", supplier : " + _supplier;
 	}
 
 	public int getId() {

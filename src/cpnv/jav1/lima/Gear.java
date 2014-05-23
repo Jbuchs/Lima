@@ -18,7 +18,7 @@ public class Gear extends Article{
 			_size = size;
 	}
 	//Setter
-	public String getGear(){
+	public String getSize(){
 		return this._size;
 	}
 	public void setSize(String size) {
@@ -30,6 +30,11 @@ public class Gear extends Article{
 
 	// Methodes
 	public String dump() {
-		return super.dump()+" : "+_size;
+		return super.dump()+", size : "+_size;
 	}
+	
+	public int compareTo (Gear other) {
+		return 0;
+	}
+
 }

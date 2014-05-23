@@ -9,18 +9,6 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content" >
 	
-	    <Button
-	        android:id="@+id/goAct1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/uitGoAct1" />
-	
-	    <Button
-	        android:id="@+id/goAct2"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/uitGoAct2" />
-	
 	</LinearLayout>
     
     <ScrollView
@@ -61,12 +49,6 @@
             android:layout_height="wrap_content"
             android:text="@string/uitDebugAction3" />
 
-        <Button
-            android:id="@+id/btnEFY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="EFY" />
-
-    </LinearLayout>
+        </LinearLayout>
 
 </LinearLayout>
