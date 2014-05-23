@@ -98,13 +98,19 @@ public class DebugActivity extends Activity
 		    break;
 		case R.id.action3: // 
 			append("click3");
-			try {
-				Student toto = new Student("Toto","xs", new Date(1994,8,12), 2012);
-				append("Dump toto: "+toto.dump());
-			} catch (LimaException e) {
-				append("Exception: "+e.getMessage());
-				Log.i ("LIMA","Exception: "+e.getMessage());
-			}
+			Gear g1 = new Gear ("Blouse", "b1", "HM", 72, 8.25, 0, false, "XS");
+			Gear g2 = new Gear ("Blouse", "b2", "HM", 72, 8.25, 0, false, "S");
+			Gear g3 = new Gear ("Blouse", "b3", "HM", 72, 8.25, 0, false, "M");
+			Gear g4 = new Gear ("Blouse", "b4", "HM", 72, 8.25, 0, false, "M");
+			Gear g5 = new Gear ("Blouse", "b5", "HM", 72, 8.25, 0, false, "XL");
+			
+			append ("Comparaison g1/g2: "+g1.compareTo(g2));
+			append ("Comparaison g1/g3: "+g1.compareTo(g3));
+			append ("Comparaison g3/g4: "+g3.compareTo(g4));
+			append ("Comparaison g4/g5: "+g4.compareTo(g5));
+			append ("Comparaison g5/g1: "+g5.compareTo(g1));
+			append ("Comparaison g2/g3: "+g2.compareTo(g3));
+			append ("Comparaison g2/g4: "+g2.compareTo(g4));
 			break;
 		}
 	}
