@@ -54,20 +54,13 @@ public class DebugActivity extends Activity
 		// Let's see which action must be performed
 		switch (btn.getId()) 
 		{
-		case R.id.action1: // Add timestamp to the debug text
-			Book book = Book.findOneById(1);
-			ArrayList<Book> books = Book.findAll();
-			
-			for (Book book2 : books) {
-				_output.setText(_output.getText()+book2.dump()+"\n");
-			}
-			
-			//_output.setText(book.dump());
+		case R.id.action1: // 
+			_output.setText(_output.getText()+"\nAction 1");
 			break;
-		case R.id.action2: // get data from web service using POST
+		case R.id.action2: //
 			_output.setText(_output.getText()+"\nAction 2");
 			break;
-		case R.id.action3: // Read button text from external file
+		case R.id.action3: //
 			_output.setText(_output.getText()+"\nAction 3");
 			break;
 		}

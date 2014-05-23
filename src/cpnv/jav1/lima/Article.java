@@ -27,26 +27,6 @@ public class Article {
 
 	public Article() {}
 	
-	public Article(int id) {
-		_id = id;
-		LimaDb dao = new LimaDb(this.dao);
-		int rep = dao.executeQuery("SELECT * FROM " + sqlTable + " WHERE idarticle = "
-				+ _id);
-		if (rep != 1) {
-			// throw new Exception("Aucun article trouvé");
-		}
-		Log.i("LIMA", String.valueOf(rep));
-		while (dao.moveNext()) {
-			_name = dao.getField(sqlName);
-			_number = dao.getField(sqlNumber);
-			_supplier = dao.getField(sqlSupplier);
-			_price = Float.parseFloat(dao.getField(sqlPrice));
-			_TVA = Float.parseFloat(dao.getField(sqlTVA));
-			_stock = Integer.parseInt(dao.getField(sqlStock));
-			_obsolete = Integer.parseInt(dao.getField(sqlObsolete));
-		}
-	}
-
 	public Article(String name, String number, String supplier, float price,
 			float tVA, int stock, int obsolete) {
 		setName(name);
@@ -60,50 +40,6 @@ public class Article {
 		//this.save();
 	}
 	
-	public static ArrayList<Article> list() {
-		ArrayList<Article> list = new ArrayList<Article>();
-		LimaDb dao = new LimaDb("http://192.168.0.4/");
-		int rep = dao.executeQuery("SELECT * FROM " + sqlTable);
-		if (rep < 1) {
-			// throw new Exception("Aucun article trouvé");
-		}
-		while (dao.moveNext()) {
-			Article article = new Article(
-					dao.getField(sqlName), 
-					dao.getField(sqlNumber), 
-					dao.getField(sqlSupplier), 
-					Float.parseFloat(dao.getField(sqlPrice)), 
-					Float.parseFloat(dao.getField(sqlTVA)),
-					Integer.parseInt(dao.getField(sqlStock)),
-					Integer.parseInt(dao.getField(sqlObsolete)));
-			list.add(article);
-		}
-		return list;
-	}
-	
-	private boolean save(){
-		LimaDb dao = new LimaDb(this.dao);
-		String sql = "INSERT INTO " + sqlTable + " ("
-				+ sqlName + ","
-				+ sqlNumber + ","
-				+ sqlSupplier + ","
-				+ sqlPrice + ","
-				+ sqlTVA + ","
-				+ sqlStock + ","
-				+ sqlObsolete + ") VALUES ('"
-				+ _name + "','"
-				+ _number + "','"
-				+ _supplier + "',"
-				+ _price + ","
-				+ _TVA + ","
-				+ _stock + ","
-				+ _obsolete + ")";
-		int rep = dao.executeQuery(sql);
-		Log.i("LIMA", sql);
-		Log.i("LIMA", Integer.toString(rep));
-		return false;
-	}
-
 	public String dump() {
 		return "id : " + _id + "\n name : " + _name + "\n number : " + _number
 				+ "\n supplier : " + _supplier + "\n price : " + _price

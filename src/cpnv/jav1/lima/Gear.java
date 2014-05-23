@@ -1,8 +1,3 @@
-//	File 		: Class Gear
-// 	Version		: 1.0
-//	Author 		: Fabien Languetin
-//	Project 	: Lima 
-
 package cpnv.jav1.lima;
 
 public class Gear extends Article{
