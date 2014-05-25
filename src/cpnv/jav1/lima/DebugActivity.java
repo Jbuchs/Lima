@@ -39,6 +39,8 @@ public class DebugActivity extends Activity
        	_btn.setOnClickListener(this); 
         _btn = (Button)findViewById(R.id.action3); 
        	_btn.setOnClickListener(this); 
+        _btn = (Button)findViewById(R.id.action4); 
+       	_btn.setOnClickListener(this); 
        	
        	// Get reference on the output textview
 		_output = (TextView)findViewById(R.id.outputzone);
@@ -92,6 +94,18 @@ public class DebugActivity extends Activity
 				equipment[r] = temp;
 			}
 			_output.setText("Mélange terminé");
+			break;
+
+		case R.id.action4: // Rechercher
+			
+			Gear quid = new Gear ("Pantalon", "Là, ", "HM", 72.0, 8.25, 0, false, "XXL");
+
+			int count = 0;
+			
+			for (int i=0; i<equipment.length-1; i++)
+				if (equipment[i].compareTo(quid) == 0) count++;
+			
+			_output.setText("Trouvé "+count+ " fois "+ quid.dump()+ " dans la liste");
 			break;
 		}
 	}
