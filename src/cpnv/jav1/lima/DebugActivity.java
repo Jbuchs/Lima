@@ -78,12 +78,12 @@ public class DebugActivity extends Activity
 		case R.id.action2: // Trier
 			
 			for (int i=0; i<blouses.length-2; i++)
-				for (int bulle=blouses.length-1; bulle > i; bulle--)
-					if (blouses[i].compareTo(blouses[bulle]) < 0)
+				for (int cmp=blouses.length-1; cmp > i; cmp--)
+					if (blouses[i].compareTo(blouses[cmp]) < 0)
 					{
 						Gear temp = blouses[i];
-						blouses[i] = blouses[bulle];
-						blouses[bulle] = temp;
+						blouses[i] = blouses[cmp];
+						blouses[cmp] = temp;
 					}
 			_output.setText("Tri terminŽ");
 			break;
