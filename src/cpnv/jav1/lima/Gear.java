@@ -33,7 +33,58 @@ public class Gear extends Article{
 		return super.dump()+", size : "+_size;
 	}
 	
+	/**
+	 * Compare this gear object to another.
+	 * The comparison order is: 
+	 *   - Alphabetically on the name
+	 *   - On the size (XS,S,M,L,XL,XXL)
+	 *   - Alphabetically on the supplier name
+	 * @param other
+	 * The other Gear to which we compare this object
+	 * @return
+	 * 1 if 'this' is greater than 'other'
+	 * 0 if 'this' is equal to 'other'
+	 * -1 if 'this' is smaller than 'other'
+	 */
 	public int compareTo (Gear other) {
+		switch (this.getName().compareTo(other.getName()))
+		{
+		case 0: // same name: drill down to the size
+			// Rank of this's size
+			int thisSizeRank = 0; // undefined / unrecognized sizes go to the end
+			String s = this.getSize();
+			
+			if (s.equals("XS")) thisSizeRank = 1;
+			if (s.equals("S")) thisSizeRank = 2;
+			if (s.equals("M")) thisSizeRank = 3;
+			if (s.equals("L")) thisSizeRank = 4;
+			if (s.equals("XL")) thisSizeRank = 5;
+			if (s.equals("XXL")) thisSizeRank = 6;
+			
+			// switch would have been cleaner, but isn't supported on string by JRE < 1.7
+			// and I don't want to install a JRE just for that
+			
+			// Rank of other's size
+			int otherSizeRank = 0; // undefined / unrecognized sizes go to the end
+			s = other.getSize();
+			if (s.equals("XS")) otherSizeRank = 1;
+			if (s.equals("S")) otherSizeRank = 2;
+			if (s.equals("M")) otherSizeRank = 3;
+			if (s.equals("L")) otherSizeRank = 4;
+			if (s.equals("XL")) otherSizeRank = 5;
+			if (s.equals("XXL")) otherSizeRank = 6;
+			
+			if (thisSizeRank == otherSizeRank) // Same size -> use supplier name
+				return (this.getSupplier().compareTo(other.getSupplier()));
+			else
+				if (thisSizeRank > otherSizeRank)
+					return 1;
+				else
+					return -1;
+			
+		case 1: return 1;
+		case -1: return -1;
+		}
 		return 0;
 	}
 
