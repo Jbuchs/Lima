@@ -42,21 +42,21 @@ public class DebugActivity extends Activity
 		_output = (TextView)findViewById(R.id.outputzone);
 		
 		// Initialize array
-		blouses[14] = new Gear ("Blouse 1ere", "lupt", "Armani", 72.0f, 8.25f, 0, 0, "XS");
-		blouses[1] = new Gear ("Blouse 1ere", "Ž.  ", "HM", 72.0f, 8.25f, 0, 0, "XXS");
-		blouses[2] = new Gear ("Blouse 1ere", "uxe,", "Armani", 72.0f, 8.25f, 0, 0, "M");
-		blouses[3] = new Gear ("Blouse 2eme", " n'e", "HM", 72.0f, 8.25f, 0, 0, "L");
-		blouses[4] = new Gear ("Blouse 2eme", "u'or", "Armani", 72.0f, 8.25f, 0, 0, "S");
-		blouses[5] = new Gear ("Blouse 1ere", " cal", "HM", 72.0f, 8.25f, 0, 0, "S");
-		blouses[6] = new Gear ("Blouse 2eme", "Lˆ, ", "HM", 72.0f, 8.25f, 0, 0, "XXL");
-		blouses[7] = new Gear ("Blouse 2eme", "dre ", "Armani", 72.0f, 8.25f, 0, 0, "XS");
-		blouses[8] = new Gear ("Blouse 2eme", "et b", "HM", 72.0f, 8.25f, 0, 0, "X");
-		blouses[9] = new Gear ("Blouse 2eme", "st q", "Armani", 72.0f, 8.25f, 0, 0, "M");
-		blouses[10] = new Gear ("Blouse 1ere", "eaut", "HM", 72.0f, 8.25f, 0, 0, "XL");
-		blouses[11] = new Gear ("Blouse 1ere", "me e", "Armani", 72.0f, 8.25f, 0, 0, "S");
-		blouses[12] = new Gear ("Blouse 1ere", "Ž, l", "Armani", 72.0f, 8.25f, 0, 0, "L");
-		blouses[13] = new Gear ("Blouse 2eme", "tout", "HM", 72.0f, 8.25f, 0, 0, "XL");
-		blouses[0] = new Gear ("Blouse 1ere", "t vo", "HM", 72.0f, 8.25f, 0, 0, "XS");
+		blouses[14] = new Gear ("Blouse 1ere", "lupt", "Armani", 72.0, 8.25, 0, false, "XS");
+		blouses[1] = new Gear ("Blouse 1ere", "Ž.  ", "HM", 72.0, 8.25, 0, false, "XXS");
+		blouses[2] = new Gear ("Blouse 1ere", "uxe,", "Armani", 72.0, 8.25, 0, false, "M");
+		blouses[3] = new Gear ("Blouse 2eme", " n'e", "HM", 72.0, 8.25, 0, false, "L");
+		blouses[4] = new Gear ("Blouse 2eme", "u'or", "Armani", 72.0, 8.25, 0, false, "S");
+		blouses[5] = new Gear ("Blouse 1ere", " cal", "HM", 72.0, 8.25, 0, false, "S");
+		blouses[6] = new Gear ("Blouse 2eme", "Lˆ, ", "HM", 72.0, 8.25, 0, false, "XXL");
+		blouses[7] = new Gear ("Blouse 2eme", "dre ", "Armani", 72.0, 8.25, 0, false, "XS");
+		blouses[8] = new Gear ("Blouse 2eme", "et b", "HM", 72.0, 8.25, 0, false, "X");
+		blouses[9] = new Gear ("Blouse 2eme", "st q", "Armani", 72.0, 8.25, 0, false, "M");
+		blouses[10] = new Gear ("Blouse 1ere", "eaut", "HM", 72.0, 8.25, 0, false, "XL");
+		blouses[11] = new Gear ("Blouse 1ere", "me e", "Armani", 72.0, 8.25, 0, false, "S");
+		blouses[12] = new Gear ("Blouse 1ere", "Ž, l", "Armani", 72.0, 8.25, 0, false, "L");
+		blouses[13] = new Gear ("Blouse 2eme", "tout", "HM", 72.0, 8.25, 0, false, "XL");
+		blouses[0] = new Gear ("Blouse 1ere", "t vo", "HM", 72.0, 8.25, 0, false, "XS");
     }
 
 	// Any click on this screen will invoke this handler

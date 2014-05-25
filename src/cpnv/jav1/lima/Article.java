@@ -9,10 +9,10 @@ public class Article {
 	private String _name;
 	private String _number;
 	private String _supplier;
-	private float _price;
-	private float _TVA;
+	private double _price;
+	private double _TVA;
 	private int _stock;
-	private int _obsolete;
+	private boolean _obsolete;
 
 	public static final String sqlId = "idarticle";
 	public static final String sqlName = "articlename";
@@ -27,8 +27,8 @@ public class Article {
 
 	public Article() {}
 	
-	public Article(String name, String number, String supplier, float price,
-			float tVA, int stock, int obsolete) {
+	public Article(String name, String number, String supplier, double price,
+			double tVA, int stock, boolean obsolete) {
 		setName(name);
 		setNumber(number);
 		setObsolete(obsolete);
@@ -80,15 +80,15 @@ public class Article {
 		return _price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		_price = price;
 	}
 
-	public float getTVA() {
+	public double getTVA() {
 		return _TVA;
 	}
 
-	public void setTVA(float tVA) {
+	public void setTVA(double tVA) {
 		_TVA = tVA;
 	}
 
@@ -100,11 +100,11 @@ public class Article {
 		_stock = stock;
 	}
 
-	public int getObsolete() {
+	public boolean getObsolete() {
 		return _obsolete;
 	}
 
-	public void setObsolete(int obsolete) {
+	public void setObsolete(boolean obsolete) {
 		_obsolete = obsolete;
 	}
 
