@@ -6,5 +6,6 @@
     <string name="uitDebugAction1">Afficher</string>
     <string name="uitDebugAction2">Trier</string>
     <string name="uitDebugAction3">Mélanger</string>
+    <string name="uitDebugAction4">Rechercher</string>
     
 </resources>
