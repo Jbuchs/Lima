@@ -47,9 +47,9 @@ public class Gear extends Article implements Comparable <Gear>{
 	 * -1 if 'this' is smaller than 'other'
 	 */
 	public int compareTo (Gear other) {
-		switch (this.getName().compareTo(other.getName()))
+		int cmps = this.getName().compareTo(other.getName());
+		if (cmps == 0) // same name: drill down to the size
 		{
-		case 0: // same name: drill down to the size
 			// Rank of this's size
 			int thisSizeRank = 0; // undefined / unrecognized sizes go to the end
 			String s = this.getSize();
@@ -75,17 +75,22 @@ public class Gear extends Article implements Comparable <Gear>{
 			if (s.equals("XXL")) otherSizeRank = 6;
 			
 			if (thisSizeRank == otherSizeRank) // Same size -> use supplier name
-				return (this.getSupplier().compareTo(other.getSupplier()));
+			{
+				cmps = this.getSupplier().compareTo(other.getSupplier());
+				if (cmps == 0) return 0;// Same supplier -> no difference found
+				if (cmps > 0) return 1; // Supplier of other is bigger
+				if (cmps < 0) return -1;// Supplier of other is smaller
+			}
 			else
 				if (thisSizeRank > otherSizeRank)
 					return 1;
 				else
 					return -1;
-			
-		case 1: return 1;
-		case -1: return -1;
 		}
-		return 0;
+		if (cmps > 0) return 1; // Name of other is bigger
+		if (cmps < 0) return -1;// Name of other is smaller
+		return 0; // unreachable. just to keep the compiler happy
 	}
+
 
 }
