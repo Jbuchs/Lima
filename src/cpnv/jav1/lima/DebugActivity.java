@@ -1,6 +1,8 @@
 package cpnv.jav1.lima;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.zip.Inflater;
 
 import cpnv.jav1.lima.R;
@@ -20,7 +22,7 @@ public class DebugActivity extends Activity
 	private Button _btn;
 	private TextView _output;
 	
-	Gear[] blouses = new Gear[15]; 
+	Gear[] blouses = new Gear[15];
 
     // Create activity event handler
 	@Override
@@ -77,14 +79,7 @@ public class DebugActivity extends Activity
 			break;
 		case R.id.action2: // Trier
 			
-			for (int i=0; i<blouses.length-2; i++)
-				for (int bulle=blouses.length-1; bulle > i; bulle--)
-					if (blouses[i].compareTo(blouses[bulle]) < 0)
-					{
-						Gear temp = blouses[i];
-						blouses[i] = blouses[bulle];
-						blouses[bulle] = temp;
-					}
+			Arrays.sort(blouses, Collections.reverseOrder());
 			_output.setText("Tri terminŽ");
 			break;
 		case R.id.action3: // MŽlanger

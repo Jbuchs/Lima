@@ -1,6 +1,6 @@
 package cpnv.jav1.lima;
 
-public class Gear extends Article{
+public class Gear extends Article implements Comparable <Gear>{
 
 	// Initialization variable size
 	private String _size;
